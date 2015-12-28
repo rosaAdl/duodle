@@ -1,4 +1,5 @@
-h1. Descripsion of the game:
+Descripsion of the game:
+======================
 
 1. Server should send everyone the same question from a question bank
 2. Everyone should send an answer to the question -> Everyone should see all the answers.
