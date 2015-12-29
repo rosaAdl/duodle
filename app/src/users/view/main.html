@@ -1,0 +1,50 @@
+<div layout="row" style="height: 100%">
+    <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
+                  md-component-id="left"
+                  md-is-locked-open="$mdMedia('gt-sm')">
+
+      <md-toolbar class="md-whiteframe-z1">
+        <h1>Users</h1>
+      </md-toolbar>
+
+      <md-list>
+        <md-list-item ng-repeat="it in ul.users">
+            <md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }">
+              <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>
+              {{it.name}}
+            </md-button>
+        </md-list-item>
+      </md-list>
+
+    </md-sidenav>
+
+    <div flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2">
+
+      <md-toolbar layout="row" class="md-whiteframe-z1">
+        <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
+          <md-icon md-svg-icon="menu" ></md-icon>
+        </md-button>
+        <h1>TEST</h1>
+      </md-toolbar>
+
+      <md-content flex id="content">
+        <md-input-container class="md-icon-float md-block">
+          <!-- Use floating label instead of placeholder -->
+          <label>Name</label>
+          <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+          <input ng-model="name" type="text">
+        </md-input-container>
+       
+        <md-input-container class="md-icon-float md-block">
+          <!-- Use floating label instead of placeholder -->
+          <label>Room</label>
+          <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="room"></md-icon>
+          <input ng-model="room" type="text">
+        </md-input-container>
+        
+        <md-button class="btn1" ng-click="joinRoom()"> Go to Game Room </md-button>
+      
+      </md-content>
+
+    </div>
+</div>
