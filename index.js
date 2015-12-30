@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io').listen(http);
+var users = {};
 
 
 app.use(express.static('app'));
@@ -18,7 +19,13 @@ io.on('connection', function(socket){
   });
   socket.on('join room', function(newUser) {
     socket.join(newUser.room);
+    if (!users[newUser.room]) {
+      users[newUser.room] = [];
+    }
+    users[newUser.room].push(newUser);
+    io.sockets.in(newUser.room).emit('new user joined', users[newUser.room]);
     console.log('user ' + newUser.name + ' joined the room ' + newUser.room);
+    console.log('users in this room are:' + JSON.stringify(users[newUser.room]));
   });
 });
 

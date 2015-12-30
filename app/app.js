@@ -19,8 +19,8 @@ angular
           templateUrl: './src/users/view/main.html',
           controller: 'UserController'
         })
-        .when('/', {
-          templateUrl: './src/users/view/main.html',
+        .when('/start', {
+          templateUrl: './src/users/view/start.html',
           controller: 'UserController'
         })
         .when('/chat', {

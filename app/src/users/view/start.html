@@ -28,21 +28,9 @@
       </md-toolbar>
 
       <md-content flex id="content">
-        <md-input-container class="md-icon-float md-block">
-          <!-- Use floating label instead of placeholder -->
-          <label>Name</label>
-          <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
-          <input ng-model="name" type="text">
-        </md-input-container>
-       
-        <md-input-container class="md-icon-float md-block">
-          <!-- Use floating label instead of placeholder -->
-          <label>Room</label>
-          <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="room"></md-icon>
-          <input ng-model="room" type="text">
-        </md-input-container>
-        
-        <md-button class="btn1" ng-click="joinRoom()"> Go to Game Room </md-button>
+         <h2>Welcome {{name}}, </h2>
+         <h3>You have joined room {{room}}.<h3>
+        <md-button class="btn1" ng-click=""> Start the Game </md-button>
       
       </md-content>
 

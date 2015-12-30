@@ -4,7 +4,7 @@
        .module('users')
        .controller(
           'UserController',
-          [ 'userService', '$mdSidenav', '$scope', '$log', '$q', UserController ]
+          [ 'userService', '$mdSidenav', '$scope', '$log', '$q', '$location', UserController ]
         );
 
   /**
@@ -14,23 +14,33 @@
    * @param avatarsService
    * @constructor
    */
-  function UserController( userService, $mdSidenav, $scope, $log, $q) {
+  function UserController( userService, $mdSidenav, $scope, $log, $q, $location) {
     var self = this;
 
     self.selected     = null;
-    self.users        = [ ];
+    $scope.users      = userService.users;
     self.selectUser   = selectUser;
     self.toggleList   = toggleUsersList;
     $scope.joinRoom   = joinRoom;
+    $scope.name       = userService.name;
+    $scope.room       = userService.room;
 
     // Load all registered users
 
-    userService
-          .loadAllUsers()
-          .then( function( users ) {
-            self.users    = [].concat(users);
-            self.selected = users[0];
-          });
+    // userService
+    //       .loadAllUsers()
+    //       .then( function( users ) {
+    //         self.users    = [].concat(users);
+    //         self.selected = users[0];
+    //       });
+
+    socket.on('new user joined', function(usersList) {
+      console.log("new user joined");
+      console.log(usersList);
+      userService.setUsers(usersList);
+      $scope.users = userService.users;
+      $scope.$digest();
+    });
 
     // *********************************
     // Internal methods
@@ -59,6 +69,7 @@
 
     function joinRoom () {
       userService.addUser($scope.name, null, 0, $scope.room);
+      $location.path('/start', false);
     }
 
   }
