@@ -17,7 +17,7 @@ io.on('connection', function(socket){
       io.emit('chat message', msg);
     })
     .on('disconnect', function() {
-      console.log('user disconnected');
+      userService.unregisterUser(socket);
     })
     .on('join room', function(newUser) {
       userService.registerUser(socket, newUser);
